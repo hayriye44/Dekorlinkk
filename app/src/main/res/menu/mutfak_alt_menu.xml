@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/servisUrünleri"
+        android:title="Servis Ürünleri" />
+    <item
+        android:id="@+id/catalKasik"
+        android:title="Çatal Kaşık"/>
+    <item
+        android:id="@+id/yemekTakimlari"
+        android:title="Yemek Takımları"/>
+    <item
+        android:id="@+id/bardakSurahi"
+        android:title="Bardak ve Sürahiler" />
+    <item
+        android:id="@+id/saklamaKaplari"
+        android:title="Saklama Kapları"/>
+</menu>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/tablo"
+        android:title="Tablo" />
+    <item
+        android:id="@+id/saat"
+        android:title="Saat"/>
+    <item
+        android:id="@+id/dekoratifObje"
+        android:title="Dekoratif Obje"/>
+    <item
+        android:id="@+id/kapıAksesuar"
+        android:title="Kapı Önü Aksesuarı" />
+    <item
+        android:id="@+id/ayna"
+        android:title="Ayna"/>
+</menu>

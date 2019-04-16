@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <menu xmlns:android="http://schemas.android.com/apk/res/android">
+        <item
+            android:id="@+id/tvUnite"
+            android:title="TV Ünitesi" />
+        <item
+            android:id="@+id/sehpa"
+            android:title="Sehpa"/>
+        <item
+            android:id="@+id/kitaplık"
+            android:title="Kitaplık"/>
+        <item
+             android:id="@+id/yatakOdası"
+             android:title="Yatak Odası" />
+         <item
+             android:id="@+id/OturmaOdası"
+             android:title="Oturma Odası"/>
+    </menu>
