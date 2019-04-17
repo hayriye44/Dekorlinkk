@@ -1,6 +1,7 @@
 package com.example.hayri.dekorlink;
 
 import com.example.hayri.dekorlink.Model.LoginModel;
+import com.example.hayri.dekorlink.Model.ProdactList;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -16,4 +17,7 @@ public interface Api {
     @FormUrlEncoded
     Call<LoginModel> login(@Field("email") String email, @Field("sifre") String sifre);
 
+    @POST("katÜrünler.php")
+    @FormUrlEncoded
+    Call<ProdactList> getAllProdacts(@Field("kategori_id") int kategori_id);
 }

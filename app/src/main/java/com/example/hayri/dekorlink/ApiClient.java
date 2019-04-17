@@ -3,7 +3,7 @@ package com.example.hayri.dekorlink;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-class ApiClient {
+public class ApiClient {
 
     //base url
     public static final String BASE_URL = "http://hayriyeberna.tk";
