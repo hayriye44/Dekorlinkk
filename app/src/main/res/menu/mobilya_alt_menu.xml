@@ -13,6 +13,6 @@
              android:id="@+id/yatakOdası"
              android:title="Yatak Odası" />
          <item
-             android:id="@+id/OturmaOdası"
+             android:id="@+id/oturmaOdası"
              android:title="Oturma Odası"/>
     </menu>

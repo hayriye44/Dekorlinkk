@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".UrunDetay">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ürün Detay"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:padding="10dp"
+        android:background="#F0F1F5"
+        android:textColor="#000"
+        android:layout_alignParentTop="true"
+        android:id="@+id/DetayBaslik"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:orientation="vertical"
+        android:id="@+id/ilanDetaySliderLayout"
+        android:layout_below="@+id/DetayBaslik">
+        <android.support.v4.view.ViewPager
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#fce6d6"
+            ></android.support.v4.view.ViewPager>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/ilanDetaySliderLayout"
+        android:layout_above="@+id/ilanDetayÖzellik"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_margin="8dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Ürün Adı"
+                    android:textColor="#000"
+                    android:textSize="20dp"
+                    android:padding="5dp"
+                    />
+                <TextView
+                    android:id="@+id/tvAd"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Ürün Adı"
+                    android:gravity="right"
+                    android:textColor="#000"
+                    android:textSize="20dp"
+                    android:padding="5dp"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_margin="8dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Ürün Fiyatı"
+                    android:textColor="#000"
+                    android:textSize="20dp"
+                    android:padding="5dp"
+                    />
+                <TextView
+                    android:id="@+id/tvFiyat"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Ürün Fiyatı"
+                    android:gravity="right"
+                    android:textColor="#000"
+                    android:textSize="20dp"
+                    android:padding="5dp"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_margin="8dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Ürün Açıklaması:"
+                    android:textColor="#000"
+                    android:textSize="20dp"
+                    android:padding="5dp"
+                    />
+                <TextView
+                    android:id="@+id/tvAciklama"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="..."
+                    android:textColor="#000"
+                    android:textSize="20dp"
+                    android:padding="5dp"
+                    />
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/ilanDetayÖzellik"
+        android:layout_alignParentBottom="true">
+        <Button
+            android:id="@+id/ilanDetayFavoriyeEkle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="FAVORİ AL"
+            android:layout_marginLeft="5dp"
+            android:textColor="#fff"
+            android:textStyle="bold"
+            android:background="@color/colorPrimary"/>
+        <Button
+            android:id="@+id/ilanDetaySepeteEkle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="SEPETE EKLE"
+            android:layout_marginLeft="5dp"
+            android:textColor="#fff"
+            android:textStyle="bold"
+            android:background="@color/colorPrimary"/>
+    </LinearLayout>
+
+</RelativeLayout>

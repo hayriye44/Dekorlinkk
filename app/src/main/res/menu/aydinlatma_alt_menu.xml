@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/tablo"
+        android:id="@+id/sarkitlar"
         android:title="Sarkıtlar" />
     <item
-        android:id="@+id/saat"
+        android:id="@+id/avizeler"
         android:title="Avizeler"/>
     <item
-        android:id="@+id/dekoratifObje"
+        android:id="@+id/ampül_led"
         android:title="Ampüller ve Led Ürünler"/>
     <item
-        android:id="@+id/kapıAksesuar"
+        android:id="@+id/spot"
         android:title="Spot Lambalar" />
     <item
-        android:id="@+id/ayna"
+        android:id="@+id/led"
         android:title="Led Aydınlatmalar"/>
 </menu>

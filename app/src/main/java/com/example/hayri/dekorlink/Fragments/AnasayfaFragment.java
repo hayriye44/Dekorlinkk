@@ -62,6 +62,7 @@ public class AnasayfaFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //Creating the instance of PopupMenu
+                AllProductList(8);
                 showPopupMenuMutfak(v);
             }
         });
@@ -70,6 +71,7 @@ public class AnasayfaFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //Creating the instance of PopupMenu
+                AllProductList(14);
                 showPopupMenuEvDekorasyon(v);
             }
         });
@@ -78,6 +80,7 @@ public class AnasayfaFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //Creating the instance of PopupMenu
+                AllProductList(20);
                 showPopupMenuEvAydınlatma(v);
             }
         });
@@ -99,30 +102,25 @@ public class AnasayfaFragment extends Fragment {
                 // TODO Auto-generated method stub
                 switch (menuitem.getItemId()) {
                     case R.id.tvUnite:
-                        // do your code
+                        AllProductList(3);
                         return true;
-            /*case R.id.upload_item:
-                // do your code
-                return true;
-            case R.id.copy_item:
-                // do your code
-                return true;
-            case R.id.print_item:
-                // do your code
-                return true;
-            case R.id.share_item:
-                // do your code
-                return true;
-            case R.id.bookmark_item:
-                // do your code
-                return true;*/
+                    case R.id.sehpa:
+                        AllProductList(4);
+                        return true;
+                    case R.id.kitaplık:
+                        AllProductList(5);
+                        return true;
+                    case R.id.yatakOdası:
+                        AllProductList(6);
+                        return true;
+                    case R.id.oturmaOdası:
+                        AllProductList(7);
+                        return true;
                     default:
                         return false;
                 }
-
             }
         });
-
         popupmenu.show();
     }
     private void showPopupMenuMutfak(View view) {
@@ -134,26 +132,23 @@ public class AnasayfaFragment extends Fragment {
             public boolean onMenuItemClick(MenuItem menuitem) {
                 // TODO Auto-generated method stub
                 switch (menuitem.getItemId()) {
-                    case R.id.tvUnite:
-                        // do your code
+                    case R.id.servisUrünleri:
+                        AllProductList(9);
                         return true;
-            /*case R.id.upload_item:
-                // do your code
-                return true;
-            case R.id.copy_item:
-                // do your code
-                return true;
-            case R.id.print_item:
-                // do your code
-                return true;
-            case R.id.share_item:
-                // do your code
-                return true;
-            case R.id.bookmark_item:
-                // do your code
-                return true;*/
-                    default:
-                        return false;
+                    case R.id.catalKasik:
+                        AllProductList(10);
+                        return true;
+                    case R.id.yemekTakimlari:
+                        AllProductList(11);
+                        return true;
+                    case R.id.bardakSurahi:
+                        AllProductList(12);
+                        return true;
+                    case R.id.saklamaKaplari:
+                        AllProductList(13);
+                        return true;
+                            default:
+                                return false;
                 }
 
             }
@@ -170,31 +165,26 @@ public class AnasayfaFragment extends Fragment {
             public boolean onMenuItemClick(MenuItem menuitem) {
                 // TODO Auto-generated method stub
                 switch (menuitem.getItemId()) {
-                    case R.id.tvUnite:
-                        // do your code
+                    case R.id.tablo:
+                        AllProductList(15);
                         return true;
-            /*case R.id.upload_item:
-                // do your code
-                return true;
-            case R.id.copy_item:
-                // do your code
-                return true;
-            case R.id.print_item:
-                // do your code
-                return true;
-            case R.id.share_item:
-                // do your code
-                return true;
-            case R.id.bookmark_item:
-                // do your code
-                return true;*/
-                    default:
-                        return false;
+                    case R.id.saat:
+                        AllProductList(16);
+                        return true;
+                    case R.id.dekoratifObje:
+                        AllProductList(17);
+                        return true;
+                    case R.id.kapıAksesuar:
+                        AllProductList(18);
+                        return true;
+                    case R.id.ayna:
+                        AllProductList(19);
+                        return true;
+                            default:
+                                return false;
                 }
-
             }
         });
-
         popupmenu.show();
     }
     private void showPopupMenuEvAydınlatma(View view) {
@@ -206,31 +196,26 @@ public class AnasayfaFragment extends Fragment {
             public boolean onMenuItemClick(MenuItem menuitem) {
                 // TODO Auto-generated method stub
                 switch (menuitem.getItemId()) {
-                    case R.id.tvUnite:
-                        // do your code
+                    case R.id.sarkitlar:
+                        AllProductList(21);
                         return true;
-            /*case R.id.upload_item:
-                // do your code
-                return true;
-            case R.id.copy_item:
-                // do your code
-                return true;
-            case R.id.print_item:
-                // do your code
-                return true;
-            case R.id.share_item:
-                // do your code
-                return true;
-            case R.id.bookmark_item:
-                // do your code
-                return true;*/
-                    default:
-                        return false;
+                    case R.id.avizeler:
+                        AllProductList(22);
+                        return true;
+                    case R.id.ampül_led:
+                        AllProductList(23);
+                        return true;
+                    case R.id.spot:
+                        AllProductList(24);
+                        return true;
+                    case R.id.led:
+                        AllProductList(25);
+                        return true;
+                            default:
+                                return false;
                 }
-
             }
         });
-
         popupmenu.show();
     }
     public void AllProductList(int kategori_id)

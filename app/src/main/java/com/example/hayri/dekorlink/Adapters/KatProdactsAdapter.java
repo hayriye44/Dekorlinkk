@@ -1,6 +1,7 @@
 package com.example.hayri.dekorlink.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 
 import com.example.hayri.dekorlink.Model.ProductsItem;
 import com.example.hayri.dekorlink.R;
+import com.example.hayri.dekorlink.UrunDetay;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -41,21 +43,19 @@ public class KatProdactsAdapter extends RecyclerView.Adapter<KatProdactsAdapter.
         viewHolder.tvÜrünFiyati.setText(list.get(i).getFiyat().toString());
 
        // Picasso.get().load(list.get(i).get).into(viewHolder.ivÜrünResmi);
-       /* viewHolder.btnDetay.setOnClickListener(new View.OnClickListener() {
+        viewHolder.btnDetay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(context,YemekDetay.class);
-                intent.putExtra("resim",list.get(getir).getYemekresim());
-                intent.putExtra("Kategori", katAdi);
-                intent.putExtra("YemekAdi",list.get(getir).getYemekAdi().toString());
-                intent.putExtra("YemekMiktari",list.get(getir).getMiktar().toString());
-                intent.putExtra("YemekFiyati",list.get(getir).getYemekFiyat().toString());
-                intent.putExtra("YemekPuani",list.get(getir).getYorumPuani().toString());
-                intent.putExtra("KulAdi",list.get(getir).getKulid().toString());
+                Intent intent=new Intent(context,UrunDetay.class);
+                intent.putExtra("id",list.get(getir).getId());
+                intent.putExtra("adi",list.get(getir).getUrun_adi());
+                intent.putExtra("fiyat",list.get(getir).getFiyat());
+                intent.putExtra("aciklama",list.get(getir).getAciklama());
+                intent.putExtra("kategoriid",list.get(getir).getKategori_id());
+
                 context.startActivity(intent);
             }
         });
-*/
     }
 
     @Override
