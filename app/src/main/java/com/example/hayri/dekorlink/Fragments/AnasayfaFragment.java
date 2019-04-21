@@ -4,6 +4,7 @@ package com.example.hayri.dekorlink.Fragments;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import android.view.MenuItem;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 
+import com.example.hayri.dekorlink.Adapters.CokSatanlarAdapter;
 import com.example.hayri.dekorlink.Adapters.KatProdactsAdapter;
 import com.example.hayri.dekorlink.Api;
 import com.example.hayri.dekorlink.Model.ProdactList;
@@ -37,12 +39,11 @@ import com.example.hayri.dekorlink.ApiClient;
  */
 public class AnasayfaFragment extends Fragment {
     private View view;
-    RecyclerView rvÜrünler;
-
+    RecyclerView rvÜrünler,rvCokSatanlar;
     List<SoldprodactsItem> coksatanlar;
-
     List<ProductsItem> prodactList;
     KatProdactsAdapter ürünAdapter;
+    CokSatanlarAdapter cokSatanlarAdapter;
     public AnasayfaFragment() {
         // Required empty public constructor
     }
@@ -50,22 +51,32 @@ public class AnasayfaFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view=inflater.inflate(R.layout.fragment_anasayfa, container, false);
+        rvÜrünler=view.findViewById(R.id.rvKatÜrünler);
+        RecyclerView.LayoutManager layoutManager=new GridLayoutManager(getContext(),2);
+        rvÜrünler.setLayoutManager(layoutManager);
+        rvCokSatanlar=view.findViewById(R.id.rvCokSatılanlar);
+        //RecyclerView.LayoutManager layoutManager2=new GridLayoutManager(getContext(),2);
+        LinearLayoutManager layoutManager2 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        rvCokSatanlar.setLayoutManager(layoutManager2);
+        prodactList=new ArrayList<>();
+        rvÜrünler.setVisibility(View.INVISIBLE);
+        rvCokSatanlar.setVisibility(View.VISIBLE);
+        EnCokSatanGetir();
         Button anaSayfa = (Button)view.findViewById(R.id.anaSayfa);
         anaSayfa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                rvÜrünler.setVisibility(View.INVISIBLE);
+                rvCokSatanlar.setVisibility(View.VISIBLE);
                 EnCokSatanGetir();
             }
         });
-
-
-
-
-
         Button mobilya = (Button)view.findViewById(R.id.mobilya);
         mobilya.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                rvÜrünler.setVisibility(View.VISIBLE);
+                rvCokSatanlar.setVisibility(View.INVISIBLE);
                 AllProductList(2);
                 showPopupMenuMobilya(v);
             }
@@ -74,7 +85,8 @@ public class AnasayfaFragment extends Fragment {
         mutfak.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Creating the instance of PopupMenu
+                rvÜrünler.setVisibility(View.VISIBLE);
+                rvCokSatanlar.setVisibility(View.INVISIBLE);
                 AllProductList(8);
                 showPopupMenuMutfak(v);
             }
@@ -83,7 +95,8 @@ public class AnasayfaFragment extends Fragment {
         evDekorasyon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Creating the instance of PopupMenu
+                rvÜrünler.setVisibility(View.VISIBLE);
+                rvCokSatanlar.setVisibility(View.INVISIBLE);
                 AllProductList(14);
                 showPopupMenuEvDekorasyon(v);
             }
@@ -92,16 +105,12 @@ public class AnasayfaFragment extends Fragment {
         aydınlatma.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Creating the instance of PopupMenu
+                rvÜrünler.setVisibility(View.VISIBLE);
+                rvCokSatanlar.setVisibility(View.INVISIBLE);
                 AllProductList(20);
                 showPopupMenuEvAydınlatma(v);
             }
         });
-        // Inflate the layout for this fragment
-        rvÜrünler=view.findViewById(R.id.rvKatÜrünler);
-        RecyclerView.LayoutManager layoutManager=new GridLayoutManager(getContext(),2);
-        rvÜrünler.setLayoutManager(layoutManager);
-        prodactList=new ArrayList<>();
         return view;
     }
     private void showPopupMenuMobilya(View view) {
@@ -111,6 +120,7 @@ public class AnasayfaFragment extends Fragment {
         popupmenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem menuitem) {
+                rvÜrünler.setVisibility(View.VISIBLE);
                 // TODO Auto-generated method stub
                 switch (menuitem.getItemId()) {
                     case R.id.tvUnite:
@@ -136,6 +146,7 @@ public class AnasayfaFragment extends Fragment {
         popupmenu.show();
     }
     private void showPopupMenuMutfak(View view) {
+        rvÜrünler.setVisibility(View.VISIBLE);
 //      // TODO Auto-generated method stub
         PopupMenu popupmenu = new PopupMenu(getActivity(), view);
         popupmenu.getMenuInflater().inflate(R.menu.mutfak_alt_menu, popupmenu.getMenu());
@@ -169,6 +180,7 @@ public class AnasayfaFragment extends Fragment {
         popupmenu.show();
     }
     private void showPopupMenuEvDekorasyon(View view) {
+        rvÜrünler.setVisibility(View.VISIBLE);
 //      // TODO Auto-generated method stub
         PopupMenu popupmenu = new PopupMenu(getActivity(), view);
         popupmenu.getMenuInflater().inflate(R.menu.evdekorasyon_alt_menu, popupmenu.getMenu());
@@ -200,6 +212,7 @@ public class AnasayfaFragment extends Fragment {
         popupmenu.show();
     }
     private void showPopupMenuEvAydınlatma(View view) {
+        rvÜrünler.setVisibility(View.VISIBLE);
 //      // TODO Auto-generated method stub
         PopupMenu popupmenu = new PopupMenu(getActivity(), view);
         popupmenu.getMenuInflater().inflate(R.menu.aydinlatma_alt_menu, popupmenu.getMenu());
@@ -244,7 +257,7 @@ public class AnasayfaFragment extends Fragment {
                 prodactList = response.body().getProducts();
                 ürünAdapter=new KatProdactsAdapter(prodactList,getContext());
                 rvÜrünler.setAdapter(ürünAdapter);
-                Toast.makeText(getContext(),"Sistemde kayıtlı"+prodactList.size()+"yemek var",Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(),"Sistemde kayıtlı"+prodactList.size()+"ürün var",Toast.LENGTH_LONG).show();
 
                 Log.i("Yemekler",response.body().getProducts().toString());
             }
@@ -267,15 +280,9 @@ public class AnasayfaFragment extends Fragment {
             public void onResponse(Call<SoldprodactList> call, Response<SoldprodactList> response) {
                 coksatanlar=response.body().getSoldprodacts();
                 Log.i("coksatanürünler","Adı"+response.body().getSoldprodacts());
-               /* adres=response.body().getAdresAciklama().toString();
-                tel=response.body().getTel().toString();
-                il=response.body().getIlid().toString();
-                ili=findViewById(R.id.tvİl);
-                adresi=findViewById(R.id.tvAdres);
-                teli=findViewById(R.id.telNo);
-                ili.setText(il);
-                adresi.setText(adres);
-                teli.setText(tel);*/
+                cokSatanlarAdapter=new CokSatanlarAdapter(coksatanlar,getContext());
+                rvCokSatanlar.setAdapter(cokSatanlarAdapter);
+
                }
             @Override
             public void onFailure(Call<SoldprodactList> call, Throwable t) {

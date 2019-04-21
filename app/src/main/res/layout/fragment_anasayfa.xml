@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragments.AnasayfaFragment">
     <RelativeLayout
         android:layout_width="match_parent"
@@ -62,10 +63,24 @@
             android:layout_height="match_parent"
             android:layout_marginTop="50dp"
             >
+
+
+
             <android.support.v7.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/rvKatÜrünler"
+                ></android.support.v7.widget.RecyclerView>
+
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="280dp"
+                android:id="@+id/rvCokSatılanlar"
+                android:visibility="gone"
+                android:orientation="horizontal"
+                app:spanCount="3"
+                app:layoutManager="android.support.v7.widget.LinearLayoutManager"
                 ></android.support.v7.widget.RecyclerView>
 
         </android.support.v7.widget.CardView>
