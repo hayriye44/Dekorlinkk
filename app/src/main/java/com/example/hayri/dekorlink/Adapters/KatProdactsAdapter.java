@@ -51,21 +51,18 @@ public class KatProdactsAdapter extends RecyclerView.Adapter<KatProdactsAdapter.
                 intent.putExtra("adi",list.get(getir).getUrun_adi());
                 intent.putExtra("fiyat",list.get(getir).getFiyat());
                 intent.putExtra("aciklama",list.get(getir).getAciklama());
+               // intent.putExtra("resim",list.get(getir).get);
                 intent.putExtra("kategoriid",list.get(getir).getKategori_id());
-
                 context.startActivity(intent);
             }
         });
     }
-
     @Override
     public int getItemCount() {
         return list.size();
     }
-
     //view elemanları tanımı için
     public class ViewHolder extends RecyclerView.ViewHolder{
-
         ImageView ivÜrünResmi;
         TextView tvKategori, tvÜrünAdi,tvYemekMiktari, tvÜrünFiyati,tvYemekPuani;
         Button btnDetay;

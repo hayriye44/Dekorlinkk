@@ -20,15 +20,17 @@ public class UrunDetay extends AppCompatActivity {
         String kategoriid = extras.getString("kategoriid");
         Log.i("ürünıd",""+ürün_id+"ad:"+adi+"aciklama:"+aciklama+"katıd:"+kategoriid);
         Log.i("ürünad",""+adi);
-        tvÜrünFiyati=(TextView)findViewById(R.id.tvFiyat);
-        tvÜrünAdi=(TextView)findViewById(R.id.tvAd);
-        tvÜrünAciklamasi=(TextView)findViewById(R.id.tvAciklama);
+        tanimla();
         tvÜrünAdi.setText(adi);
         tvÜrünFiyati.setText(fiyat);
         tvÜrünAciklamasi.setText(aciklama);
     }
     public  void tanimla(){
-
+        tvÜrünFiyati=(TextView)findViewById(R.id.tvFiyat);
+        tvÜrünAdi=(TextView)findViewById(R.id.tvAd);
+        tvÜrünAciklamasi=(TextView)findViewById(R.id.tvAciklama);
 
     }
+
+
 }

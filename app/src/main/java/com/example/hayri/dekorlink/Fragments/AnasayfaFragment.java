@@ -18,6 +18,8 @@ import com.example.hayri.dekorlink.Adapters.KatProdactsAdapter;
 import com.example.hayri.dekorlink.Api;
 import com.example.hayri.dekorlink.Model.ProdactList;
 import com.example.hayri.dekorlink.Model.ProductsItem;
+import com.example.hayri.dekorlink.Model.SoldprodactList;
+import com.example.hayri.dekorlink.Model.SoldprodactsItem;
 import com.example.hayri.dekorlink.R;
 
 import java.util.ArrayList;
@@ -37,6 +39,8 @@ public class AnasayfaFragment extends Fragment {
     private View view;
     RecyclerView rvÜrünler;
 
+    List<SoldprodactsItem> coksatanlar;
+
     List<ProductsItem> prodactList;
     KatProdactsAdapter ürünAdapter;
     public AnasayfaFragment() {
@@ -47,9 +51,18 @@ public class AnasayfaFragment extends Fragment {
                              Bundle savedInstanceState) {
         view=inflater.inflate(R.layout.fragment_anasayfa, container, false);
         Button anaSayfa = (Button)view.findViewById(R.id.anaSayfa);
+        anaSayfa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EnCokSatanGetir();
+            }
+        });
+
+
+
+
+
         Button mobilya = (Button)view.findViewById(R.id.mobilya);
-
-
         mobilya.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -89,7 +102,6 @@ public class AnasayfaFragment extends Fragment {
         RecyclerView.LayoutManager layoutManager=new GridLayoutManager(getContext(),2);
         rvÜrünler.setLayoutManager(layoutManager);
         prodactList=new ArrayList<>();
-
         return view;
     }
     private void showPopupMenuMobilya(View view) {
@@ -243,5 +255,33 @@ public class AnasayfaFragment extends Fragment {
             }
         });
     }
-
+    public void EnCokSatanGetir(){
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(ApiClient.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create()) //Here we are using the GsonConverterFactory to directly convert json data to object
+                .build();
+        Api api = retrofit.create(Api.class);
+        Call<SoldprodactList> call = api.getCokSatanGetir();
+        call.enqueue(new Callback<SoldprodactList>() {
+            @Override
+            public void onResponse(Call<SoldprodactList> call, Response<SoldprodactList> response) {
+                coksatanlar=response.body().getSoldprodacts();
+                Log.i("coksatanürünler","Adı"+response.body().getSoldprodacts());
+               /* adres=response.body().getAdresAciklama().toString();
+                tel=response.body().getTel().toString();
+                il=response.body().getIlid().toString();
+                ili=findViewById(R.id.tvİl);
+                adresi=findViewById(R.id.tvAdres);
+                teli=findViewById(R.id.telNo);
+                ili.setText(il);
+                adresi.setText(adres);
+                teli.setText(tel);*/
+               }
+            @Override
+            public void onFailure(Call<SoldprodactList> call, Throwable t) {
+                // Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                Log.d("error-------------->",t.getLocalizedMessage());
+            }
+        });
+    }
 }
