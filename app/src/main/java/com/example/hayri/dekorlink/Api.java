@@ -25,4 +25,11 @@ public interface Api {
 
     @GET("CokSatanGoster.php")
     Call<SoldprodactList> getCokSatanGetir();
+
+    @GET("OneCikanGoster.php")
+    Call<SoldprodactList> getOneCikanlarGetir();
+
+    @GET("IndirimliGoster.php")
+    Call<SoldprodactList> getIndirimlilerGetir();
+
 }

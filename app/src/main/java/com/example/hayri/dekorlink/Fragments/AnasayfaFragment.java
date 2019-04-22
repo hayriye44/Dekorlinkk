@@ -12,11 +12,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.view.MenuItem;
+import android.widget.HorizontalScrollView;
+import android.widget.LinearLayout;
 import android.widget.PopupMenu;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.hayri.dekorlink.Adapters.CokSatanlarAdapter;
+import com.example.hayri.dekorlink.Adapters.IndirimdekilerAdapter;
 import com.example.hayri.dekorlink.Adapters.KatProdactsAdapter;
+import com.example.hayri.dekorlink.Adapters.OneCikanlarAdapter;
 import com.example.hayri.dekorlink.Api;
 import com.example.hayri.dekorlink.Model.ProdactList;
 import com.example.hayri.dekorlink.Model.ProductsItem;
@@ -39,11 +44,16 @@ import com.example.hayri.dekorlink.ApiClient;
  */
 public class AnasayfaFragment extends Fragment {
     private View view;
-    RecyclerView rvÜrünler,rvCokSatanlar;
+    RecyclerView rvÜrünler,rvCokSatanlar,rvOneCikanlar,rvIndirimdekiler;
+    TextView cokSatanlar;
+    LinearLayout layoutOneCikanlar,layoutIndirimdekiler;
     List<SoldprodactsItem> coksatanlar;
+    List<SoldprodactsItem> onecikanlar,indirimdekiler;
     List<ProductsItem> prodactList;
     KatProdactsAdapter ürünAdapter;
     CokSatanlarAdapter cokSatanlarAdapter;
+    OneCikanlarAdapter oneCikanlarAdapter;
+    IndirimdekilerAdapter indirimdekilerAdapter;
     public AnasayfaFragment() {
         // Required empty public constructor
     }
@@ -51,32 +61,39 @@ public class AnasayfaFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view=inflater.inflate(R.layout.fragment_anasayfa, container, false);
-        rvÜrünler=view.findViewById(R.id.rvKatÜrünler);
-        RecyclerView.LayoutManager layoutManager=new GridLayoutManager(getContext(),2);
-        rvÜrünler.setLayoutManager(layoutManager);
-        rvCokSatanlar=view.findViewById(R.id.rvCokSatılanlar);
-        //RecyclerView.LayoutManager layoutManager2=new GridLayoutManager(getContext(),2);
-        LinearLayoutManager layoutManager2 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
-        rvCokSatanlar.setLayoutManager(layoutManager2);
+        tanimla();
         prodactList=new ArrayList<>();
+        cokSatanlar.setVisibility(View.VISIBLE);
         rvÜrünler.setVisibility(View.INVISIBLE);
         rvCokSatanlar.setVisibility(View.VISIBLE);
+        layoutOneCikanlar.setVisibility(View.VISIBLE);
+        layoutIndirimdekiler.setVisibility(View.VISIBLE);
         EnCokSatanGetir();
+        OneCikanGetir();
+        IndirimdekilerGetir();
         Button anaSayfa = (Button)view.findViewById(R.id.anaSayfa);
         anaSayfa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                cokSatanlar.setVisibility(View.VISIBLE);
                 rvÜrünler.setVisibility(View.INVISIBLE);
                 rvCokSatanlar.setVisibility(View.VISIBLE);
+                layoutOneCikanlar.setVisibility(View.VISIBLE);
+                layoutIndirimdekiler.setVisibility(View.VISIBLE);
                 EnCokSatanGetir();
+                OneCikanGetir();
+                IndirimdekilerGetir();
             }
         });
         Button mobilya = (Button)view.findViewById(R.id.mobilya);
         mobilya.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                cokSatanlar.setVisibility(View.INVISIBLE);
                 rvÜrünler.setVisibility(View.VISIBLE);
                 rvCokSatanlar.setVisibility(View.INVISIBLE);
+                layoutOneCikanlar.setVisibility(View.INVISIBLE);
+                layoutIndirimdekiler.setVisibility(View.INVISIBLE);
                 AllProductList(2);
                 showPopupMenuMobilya(v);
             }
@@ -85,8 +102,11 @@ public class AnasayfaFragment extends Fragment {
         mutfak.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                cokSatanlar.setVisibility(View.INVISIBLE);
                 rvÜrünler.setVisibility(View.VISIBLE);
                 rvCokSatanlar.setVisibility(View.INVISIBLE);
+                layoutOneCikanlar.setVisibility(View.INVISIBLE);
+                layoutIndirimdekiler.setVisibility(View.INVISIBLE);
                 AllProductList(8);
                 showPopupMenuMutfak(v);
             }
@@ -95,8 +115,11 @@ public class AnasayfaFragment extends Fragment {
         evDekorasyon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                cokSatanlar.setVisibility(View.INVISIBLE);
                 rvÜrünler.setVisibility(View.VISIBLE);
                 rvCokSatanlar.setVisibility(View.INVISIBLE);
+                layoutOneCikanlar.setVisibility(View.INVISIBLE);
+                layoutIndirimdekiler.setVisibility(View.INVISIBLE);
                 AllProductList(14);
                 showPopupMenuEvDekorasyon(v);
             }
@@ -105,13 +128,40 @@ public class AnasayfaFragment extends Fragment {
         aydınlatma.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                cokSatanlar.setVisibility(View.INVISIBLE);
                 rvÜrünler.setVisibility(View.VISIBLE);
                 rvCokSatanlar.setVisibility(View.INVISIBLE);
+                layoutOneCikanlar.setVisibility(View.INVISIBLE);
+                layoutIndirimdekiler.setVisibility(View.INVISIBLE);
                 AllProductList(20);
                 showPopupMenuEvAydınlatma(v);
             }
         });
         return view;
+    }
+    public  void tanimla()
+    {
+        rvÜrünler=view.findViewById(R.id.rvKatÜrünler);
+        RecyclerView.LayoutManager layoutManager=new GridLayoutManager(getContext(),2);
+        rvÜrünler.setLayoutManager(layoutManager);
+
+        rvCokSatanlar=view.findViewById(R.id.rvCokSatılanlar);
+        //RecyclerView.LayoutManager layoutManager2=new GridLayoutManager(getContext(),2,GridLayoutManager.HORIZONTAL,false);
+        LinearLayoutManager layoutManager2 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        rvCokSatanlar.setLayoutManager(layoutManager2);
+
+        rvOneCikanlar=view.findViewById(R.id.rvOneCikanlar);
+        LinearLayoutManager layoutManager3 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        rvOneCikanlar.setLayoutManager(layoutManager3);
+
+        rvIndirimdekiler=view.findViewById(R.id.rvIndirimdekiler);
+        LinearLayoutManager layoutManager4 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        rvIndirimdekiler.setLayoutManager(layoutManager4);
+
+        cokSatanlar=(TextView)view.findViewById(R.id.tvCokSatan);
+
+        layoutOneCikanlar=view.findViewById(R.id.layoutoneCikanlar);
+        layoutIndirimdekiler=view.findViewById(R.id.layoutIndirimdekiler);
     }
     private void showPopupMenuMobilya(View view) {
 //      // TODO Auto-generated method stub
@@ -176,7 +226,6 @@ public class AnasayfaFragment extends Fragment {
 
             }
         });
-
         popupmenu.show();
     }
     private void showPopupMenuEvDekorasyon(View view) {
@@ -284,6 +333,50 @@ public class AnasayfaFragment extends Fragment {
                 rvCokSatanlar.setAdapter(cokSatanlarAdapter);
 
                }
+            @Override
+            public void onFailure(Call<SoldprodactList> call, Throwable t) {
+                // Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                Log.d("error-------------->",t.getLocalizedMessage());
+            }
+        });
+    }
+    public void OneCikanGetir(){
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(ApiClient.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create()) //Here we are using the GsonConverterFactory to directly convert json data to object
+                .build();
+        Api api = retrofit.create(Api.class);
+        Call<SoldprodactList> call = api.getOneCikanlarGetir();
+        call.enqueue(new Callback<SoldprodactList>() {
+            @Override
+            public void onResponse(Call<SoldprodactList> call, Response<SoldprodactList> response) {
+                onecikanlar=response.body().getSoldprodacts();
+                Log.i("onecikanlar","Adı"+response.body().getSoldprodacts());
+                oneCikanlarAdapter=new OneCikanlarAdapter(onecikanlar,getContext());
+                rvOneCikanlar.setAdapter(oneCikanlarAdapter);
+            }
+            @Override
+            public void onFailure(Call<SoldprodactList> call, Throwable t) {
+                // Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                Log.d("error-------------->",t.getLocalizedMessage());
+            }
+        });
+    }
+    public void IndirimdekilerGetir(){
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(ApiClient.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create()) //Here we are using the GsonConverterFactory to directly convert json data to object
+                .build();
+        Api api = retrofit.create(Api.class);
+        Call<SoldprodactList> call = api.getIndirimlilerGetir();
+        call.enqueue(new Callback<SoldprodactList>() {
+            @Override
+            public void onResponse(Call<SoldprodactList> call, Response<SoldprodactList> response) {
+                indirimdekiler=response.body().getSoldprodacts();
+                Log.i("indirimdekiler","Adı"+response.body().getSoldprodacts());
+                indirimdekilerAdapter=new IndirimdekilerAdapter(indirimdekiler,getContext());
+                rvIndirimdekiler.setAdapter(indirimdekilerAdapter);
+            }
             @Override
             public void onFailure(Call<SoldprodactList> call, Throwable t) {
                 // Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();

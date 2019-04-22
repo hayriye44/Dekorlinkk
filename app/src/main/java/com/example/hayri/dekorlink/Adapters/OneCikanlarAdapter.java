@@ -1,6 +1,7 @@
 package com.example.hayri.dekorlink.Adapters;
 
 
+
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -19,21 +20,21 @@ import com.example.hayri.dekorlink.UrunDetay;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
-public class CokSatanlarAdapter  extends RecyclerView.Adapter<CokSatanlarAdapter.ViewHolder>{
+public class OneCikanlarAdapter  extends RecyclerView.Adapter<OneCikanlarAdapter.ViewHolder>{
     List<SoldprodactsItem> list;
     Context context;
 
 
-    public CokSatanlarAdapter(List<SoldprodactsItem> list, Context context) {
+    public OneCikanlarAdapter(List<SoldprodactsItem> list, Context context) {
         this.list = list;
         this.context = context;
     }
     @NonNull
     @Override
-    public CokSatanlarAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public OneCikanlarAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         //Listview için oluşturduğumuz layoutu tanımlama
         View view=LayoutInflater.from(context).inflate(R.layout.coksatanurunlistitem,viewGroup,false);
-        return new CokSatanlarAdapter.ViewHolder(view);
+        return new OneCikanlarAdapter.ViewHolder(view);
     }
 
     @Override

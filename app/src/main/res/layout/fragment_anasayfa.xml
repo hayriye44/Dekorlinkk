@@ -13,7 +13,7 @@
         <HorizontalScrollView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingBottom="10dp"
+            android:paddingBottom="3dp"
             android:id="@+id/menuuu">
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -57,12 +57,102 @@
                 </LinearLayout>
             </LinearLayout>
         </HorizontalScrollView>
+
         <android.support.v7.widget.CardView
             android:id="@+id/cvyemekler"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="50dp"
+            android:layout_below="@id/menuuu"
             >
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:id="@+id/layoutcoksatan">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Çok Satan Ürünlerimiz"
+                            android:textStyle="bold"
+                            android:textSize="18dp"
+                            android:textColor="@color/colorPrimary"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="5dp"
+                            android:id="@+id/tvCokSatan"
+                            />
+                        <android.support.v7.widget.RecyclerView
+                            android:layout_width="match_parent"
+                            android:layout_height="197dp"
+                            android:id="@+id/rvCokSatılanlar"
+                            android:visibility="gone"
+                            android:orientation="horizontal"
+                            app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+                            ></android.support.v7.widget.RecyclerView>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/layoutoneCikanlar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_below="@id/layoutcoksatan"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Öne Çıkan Ürünlerimiz"
+                            android:textStyle="bold"
+                            android:textSize="18dp"
+                            android:textColor="@color/colorPrimary"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="5dp"
+                            android:id="@+id/tvOneCikanlar"
+                            />
+                        <android.support.v7.widget.RecyclerView
+                            android:layout_width="match_parent"
+                            android:layout_height="197dp"
+                            android:id="@+id/rvOneCikanlar"
+                            android:orientation="horizontal"
+                            app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+                            ></android.support.v7.widget.RecyclerView>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/layoutIndirimdekiler"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_below="@id/layoutoneCikanlar"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="İndirimdeki Ürünlerimiz"
+                            android:textStyle="bold"
+                            android:textSize="18dp"
+                            android:textColor="@color/colorPrimary"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="5dp"
+                            android:id="@+id/tvIndirimdekiler"
+                            />
+                        <android.support.v7.widget.RecyclerView
+                            android:layout_width="match_parent"
+                            android:layout_height="197dp"
+                            android:id="@+id/rvIndirimdekiler"
+                            android:orientation="horizontal"
+                            app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+                            ></android.support.v7.widget.RecyclerView>
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+            </ScrollView>
+
+
 
 
 
@@ -72,16 +162,6 @@
                 android:id="@+id/rvKatÜrünler"
                 ></android.support.v7.widget.RecyclerView>
 
-
-            <android.support.v7.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_height="280dp"
-                android:id="@+id/rvCokSatılanlar"
-                android:visibility="gone"
-                android:orientation="horizontal"
-                app:spanCount="3"
-                app:layoutManager="android.support.v7.widget.LinearLayoutManager"
-                ></android.support.v7.widget.RecyclerView>
 
         </android.support.v7.widget.CardView>
 
