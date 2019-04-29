@@ -39,20 +39,19 @@ public class KatProdactsAdapter extends RecyclerView.Adapter<KatProdactsAdapter.
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         final int getir=i;
         //tanımlama atama işlemi
-        viewHolder.tvÜrünAdi.setText(list.get(i).getUrun_adi().toString());
+        viewHolder.tvÜrünAdi.setText(list.get(i).getUrunadi().toString());
         viewHolder.tvÜrünFiyati.setText(list.get(i).getFiyat().toString());
-
-       // Picasso.get().load(list.get(i).get).into(viewHolder.ivÜrünResmi);
+        Picasso.get().load(list.get(i).getUrunresmi().toString()).into(viewHolder.ivÜrünResmi);
         viewHolder.btnDetay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(context,UrunDetay.class);
                 intent.putExtra("id",list.get(getir).getId());
-                intent.putExtra("adi",list.get(getir).getUrun_adi());
+                intent.putExtra("adi",list.get(getir).getUrunadi());
                 intent.putExtra("fiyat",list.get(getir).getFiyat());
                 intent.putExtra("aciklama",list.get(getir).getAciklama());
-               // intent.putExtra("resim",list.get(getir).get);
-                intent.putExtra("kategoriid",list.get(getir).getKategori_id());
+                intent.putExtra("resim",list.get(getir).getUrunresmi());
+                intent.putExtra("kategoriid",list.get(getir).getKategoriId());
                 context.startActivity(intent);
             }
         });

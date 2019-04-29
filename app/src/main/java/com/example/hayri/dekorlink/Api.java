@@ -1,6 +1,8 @@
 package com.example.hayri.dekorlink;
 
+import com.example.hayri.dekorlink.Model.FavoriIslemler;
 import com.example.hayri.dekorlink.Model.Favoriler;
+import com.example.hayri.dekorlink.Model.FavorilerList;
 import com.example.hayri.dekorlink.Model.LoginModel;
 import com.example.hayri.dekorlink.Model.ProdactList;
 import com.example.hayri.dekorlink.Model.SoldprodactList;
@@ -36,6 +38,16 @@ public interface Api {
     @POST("favoriler.php")
     @FormUrlEncoded
     Call<Favoriler> favoriKontrol(@Field("uye_id") String uye_id, @Field("urun_id") String urun_id);
+
+    @POST("favoriIslemler.php")
+    @FormUrlEncoded
+    Call<FavoriIslemler> favoriIslemler(@Field("uye_id") String uye_id, @Field("urun_id") String urun_id);
+
+
+    @POST("favorilerListesi.php")
+    @FormUrlEncoded
+    Call<FavorilerList> getfavorilerList(@Field("uye_id") String uye_id);
+
 
 
 }

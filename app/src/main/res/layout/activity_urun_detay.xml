@@ -26,9 +26,10 @@
         android:id="@+id/ilanDetaySliderLayout"
         android:layout_below="@+id/DetayBaslik">
         <ImageView
+            android:id="@+id/ürünResim"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#fce6d6"
+            android:background="#fff"
             ></ImageView>
     </LinearLayout>
 
