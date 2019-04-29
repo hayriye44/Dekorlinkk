@@ -108,11 +108,11 @@ public class MainActivity extends AppCompatActivity {
                 if(response.body().getIsSuccess() == 1){
                     //get username
                     String user = response.body().getUsername();
-                   // int userid=Integer.valueOf(response.body().getUyeID());
+                    int userid=Integer.valueOf(response.body().getUyeID());
 
 
                     //storing the user in shared preferences
-                    SharedPref.getInstance(MainActivity.this).storeUserName(user);
+                    SharedPref.getInstance(MainActivity.this).storeUserName(user,userid);
                     Toast.makeText(MainActivity.this,response.body().getUsername(),Toast.LENGTH_LONG).show();
 
                     startActivity(new Intent(MainActivity.this,AnaActivity.class));

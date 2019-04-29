@@ -6,6 +6,15 @@ public class LoginModel {
     private int isSuccess;
     private String username;
 
+
+    public String getUyeID() {
+        return uyeID;
+    }
+
+    public void setUyeID(String uyeID) {
+        this.uyeID = uyeID;
+    }
+
     public void setMessage(String message){
         this.message = message;
     }
@@ -32,13 +41,13 @@ public class LoginModel {
     }
 
     @Override
-    public String toString(){
-        return
-                "Model{" +
-                        "message = '" + message + '\'' +
-                        ",userid = '" + uyeID + '\'' +
-                        ",isSuccess = '" + isSuccess + '\'' +
-                        ",username = '" + username + '\'' +
-                        "}";
+    public String toString() {
+        return "LoginModel{" +
+                "message='" + message + '\'' +
+                ", uyeID='" + uyeID + '\'' +
+                ", isSuccess=" + isSuccess +
+                ", username='" + username + '\'' +
+                '}';
     }
+
 }

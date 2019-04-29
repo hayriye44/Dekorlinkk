@@ -37,10 +37,11 @@ public class SharedPref {
 
 
     //method to store user data
-    public void storeUserName(String names) {
+    public void storeUserName(String names ,int id) {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(USER_NAME, names);
+        editor.putInt(USER_ID,id);
         editor.commit();
     }
 
@@ -57,11 +58,11 @@ public class SharedPref {
         return sharedPreferences.getString(USER_NAME, null);
 
     }
-  /*  public int LoggedInUserId() {
+    public int LoggedInUserId() {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         return sharedPreferences.getInt(USER_ID, 0);
 
-    }*/
+    }
 
 
     //Logout user
