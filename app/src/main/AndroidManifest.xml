@@ -21,7 +21,8 @@
         </activity>
         <activity android:name=".RegisterActivity" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".UrunDetay"></activity>
+        <activity android:name=".UrunDetay" />
+        <activity android:name=".Sepetim"></activity>
     </application>
 
 </manifest>

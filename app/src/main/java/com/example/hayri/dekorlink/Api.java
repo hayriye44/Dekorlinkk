@@ -5,6 +5,9 @@ import com.example.hayri.dekorlink.Model.Favoriler;
 import com.example.hayri.dekorlink.Model.FavorilerList;
 import com.example.hayri.dekorlink.Model.LoginModel;
 import com.example.hayri.dekorlink.Model.ProdactList;
+import com.example.hayri.dekorlink.Model.SepetEkle;
+import com.example.hayri.dekorlink.Model.SepetListe;
+import com.example.hayri.dekorlink.Model.SepetUpdateCreate;
 import com.example.hayri.dekorlink.Model.SoldprodactList;
 
 import retrofit2.Call;
@@ -49,5 +52,15 @@ public interface Api {
     Call<FavorilerList> getfavorilerList(@Field("uye_id") String uye_id);
 
 
+    @POST("sepetEkle.php")
+    @FormUrlEncoded
+    Call<SepetEkle> sepetEkle( @Field("uye_id") String uye_id);
 
+    @POST("sepetUrunUpdateCreate.php")
+    @FormUrlEncoded
+    Call<SepetUpdateCreate> sepetUrunEkleGüncelle(@Field("uye_id") String uye_id , @Field("urun_id") String urun_id, @Field("adet") String adet, @Field("tutar") String tutar, @Field("sepet_id") String sepet_id);
+
+    @POST("sepetListe.php")
+    @FormUrlEncoded
+    Call<SepetListe> getsepetList(@Field("sepet_id") int sepet_id);
 }

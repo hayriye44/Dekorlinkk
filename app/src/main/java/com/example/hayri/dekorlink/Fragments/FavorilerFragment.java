@@ -59,6 +59,7 @@ public class FavorilerFragment extends Fragment {
     }
     public void FavoriYemeklerListele(final String uye_id)
     {
+        Log.i("favorilerlistesiuyeıd",""+uye_id);
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(ApiClient.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create()) //Here we are using the GsonConverterFactory to directly convert json data to object

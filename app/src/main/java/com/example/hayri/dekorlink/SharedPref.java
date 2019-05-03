@@ -15,8 +15,12 @@ public class SharedPref {
 
     //Username
     public static final String USER_NAME = "username";
-    //Username
+    //Userid
     public static final String USER_ID = "id";
+
+    //Aktif Sepet
+    public static final String SEPET_ID = "sepetid";
+
 
     public static SharedPref mInstance;
 
@@ -45,6 +49,13 @@ public class SharedPref {
         editor.commit();
     }
 
+    public void storeUserSepet(int sepetid) {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt(SEPET_ID,sepetid);
+        editor.commit();
+    }
+
     //check if user is logged in
     public boolean isLoggedIn() {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
@@ -61,6 +72,11 @@ public class SharedPref {
     public int LoggedInUserId() {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         return sharedPreferences.getInt(USER_ID, 0);
+
+    }
+    public int LoggedInUserSepetId() {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getInt(SEPET_ID, 0);
 
     }
 

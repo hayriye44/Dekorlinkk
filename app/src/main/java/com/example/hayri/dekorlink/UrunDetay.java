@@ -10,6 +10,8 @@ import android.widget.Toast;
 
 import com.example.hayri.dekorlink.Model.FavoriIslemler;
 import com.example.hayri.dekorlink.Model.Favoriler;
+import com.example.hayri.dekorlink.Model.SepetEkle;
+import com.example.hayri.dekorlink.Model.SepetUpdateCreate;
 import com.squareup.picasso.Picasso;
 
 import retrofit2.Call;
@@ -17,18 +19,24 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class UrunDetay extends AppCompatActivity {
-    private TextView tvÜrünAdi,tvÜrünFiyati,tvÜrünAciklamasi;
+    private TextView tvÜrünAdi,tvÜrünFiyati,tvÜrünAciklamasi,cart_item_number;
     String giriyapanuye_id;
-    Button btn_favori;
-    ImageView ürünresmi;
+    Button btn_favori,btn_sepetEkle;
+    ImageView ürünresmi,cart_quant_minus,cart_quant_add;
+    int aktifSepet;
+    int adet;
+    String ürün_id;
+    String fiyat;
+
+    int sepetID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_urun_detay);
         Bundle extras = getIntent().getExtras();
-        final String ürün_id = extras.getString("id");
+        ürün_id = extras.getString("id");
         String adi = extras.getString("adi");
-        String fiyat = extras.getString("fiyat");
+        fiyat = extras.getString("fiyat");
         String aciklama = extras.getString("aciklama");
         String kategoriid = extras.getString("kategoriid");
         String resim = extras.getString("resim");
@@ -50,13 +58,32 @@ public class UrunDetay extends AppCompatActivity {
                 favoriIslemler(giriyapanuye_id,ürün_id);
             }
         });
+
+        String sadet=cart_item_number.getText().toString();
+        adet=Integer.valueOf(sadet);
+        AdetDüzenleme();
+        btn_sepetEkle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sepeteEkle(giriyapanuye_id);
+                sepetID=SharedPref.getInstance(UrunDetay.this).LoggedInUserSepetId();
+                String stringsepet=String.valueOf(sepetID);
+                sepetUrunEkleGüncelle(giriyapanuye_id,ürün_id,cart_item_number.getText().toString(),fiyat,stringsepet);
+            }
+        });
+
+
     }
     public  void tanimla(){
         tvÜrünFiyati=(TextView)findViewById(R.id.tvFiyat);
         tvÜrünAdi=(TextView)findViewById(R.id.tvAd);
         tvÜrünAciklamasi=(TextView)findViewById(R.id.tvAciklama);
         btn_favori=(Button)findViewById(R.id.btn_favori);
+        btn_sepetEkle=(Button)findViewById(R.id.ilanDetaySepeteEkle);
         ürünresmi=(ImageView)findViewById(R.id.ürünResim);
+        cart_quant_minus=(ImageView)findViewById(R.id.cart_quant_minus);
+        cart_quant_add=(ImageView)findViewById(R.id.cart_quant_add);
+        cart_item_number=(TextView)findViewById(R.id.cart_item_number);
     }
     private void favoriKontrol(final String uye_id, final String ürün_id) {
         Api api = ApiClient.getClient().create(Api.class);
@@ -120,5 +147,76 @@ public class UrunDetay extends AppCompatActivity {
 
     }
 
+    private  void sepeteEkle(final String uye_id)
+    {
+        aktifSepet = SharedPref.getInstance(this).LoggedInUserSepetId();
+        Log.i("AktifSepet",""+aktifSepet);
+        //yoksa sepet oluşturacak servisi çağır ve shared preferencese kaydet
+        if(aktifSepet==0)
+        {
+            Api api = ApiClient.getClient().create(Api.class);
+            Call<SepetEkle> sepetEkleCall = api.sepetEkle(uye_id);
+            sepetEkleCall.enqueue(new Callback<SepetEkle>() {
+                @Override
+                public void onResponse(Call<SepetEkle> call, Response<SepetEkle> response) {
+                    //sepet id eklendikten sonra gelen sepetid olacakBurdan gelen sepet ıd ye gore SepetÜrünler tablosuna eklenecek ve yeni sepet ıd kaydedilecek kaydedilecek
+                    SharedPref.getInstance(UrunDetay.this).storeUserSepet(Integer.valueOf(response.body().getSepetId()));
+                    Log.i("Yeni aktif sepet",""+  SharedPref.getInstance(UrunDetay.this).LoggedInUserSepetId());
+                    Toast.makeText(UrunDetay.this,response.body().getMessage(),Toast.LENGTH_LONG).show();
 
+                }
+                @Override
+                public void onFailure(Call<SepetEkle> call, Throwable t) {
+                    Toast.makeText(UrunDetay.this,t.getLocalizedMessage(),Toast.LENGTH_SHORT).show();
+                }
+            });
+
+
+
+
+        }
+    }
+    private  void sepetUrunEkleGüncelle(final String uye_id,String ürün_id,String adet,String fiyat,String sepet_id){
+
+        Api api = ApiClient.getClient().create(Api.class);
+        Call<SepetUpdateCreate> Call = api.sepetUrunEkleGüncelle(uye_id,ürün_id,adet,fiyat,sepet_id);
+        Call.enqueue(new Callback<SepetUpdateCreate>() {
+            @Override
+            public void onResponse(Call<SepetUpdateCreate> call, Response<SepetUpdateCreate> response) {
+                Log.i("Yeni aktif sepet",""+  SharedPref.getInstance(UrunDetay.this).LoggedInUserSepetId());
+                Toast.makeText(UrunDetay.this,response.body().getMessage(),Toast.LENGTH_LONG).show();
+
+            }
+            @Override
+            public void onFailure(Call<SepetUpdateCreate> call, Throwable t) {
+                Toast.makeText(UrunDetay.this,t.getLocalizedMessage(),Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+
+    }
+    public void AdetDüzenleme(){
+
+        cart_quant_minus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(adet!=1)
+                {
+                    adet--;
+                    String sadet=String.valueOf(adet);
+                    cart_item_number.setText(sadet);
+                }
+
+            }
+        });
+        cart_quant_add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                adet++;
+                String sadet=String.valueOf(adet);
+                cart_item_number.setText(sadet);
+            }
+        });
+    }
 }

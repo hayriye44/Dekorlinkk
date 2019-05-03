@@ -24,12 +24,13 @@
         android:layout_height="200dp"
         android:orientation="vertical"
         android:id="@+id/ilanDetaySliderLayout"
-        android:layout_below="@+id/DetayBaslik">
+        android:layout_below="@+id/DetayBaslik"
+        >
         <ImageView
             android:id="@+id/ürünResim"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#fff"
+
             ></ImageView>
     </LinearLayout>
 
@@ -38,6 +39,7 @@
         android:layout_height="match_parent"
         android:layout_below="@id/ilanDetaySliderLayout"
         android:layout_above="@+id/ilanDetayÖzellik"
+        android:layout_marginTop="30dp"
         >
         <LinearLayout
             android:layout_width="match_parent"
@@ -47,15 +49,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
-                android:layout_margin="8dp">
+                android:layout_margin="4dp">
                 <TextView
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="Ürün Adı"
                     android:textColor="#000"
-                    android:textSize="20dp"
-                    android:padding="5dp"
+                    android:textSize="17dp"
                     />
                 <TextView
                     android:id="@+id/tvAd"
@@ -65,23 +66,21 @@
                     android:text="Ürün Adı"
                     android:gravity="right"
                     android:textColor="#000"
-                    android:textSize="20dp"
-                    android:padding="5dp"
+                    android:textSize="17dp"
                     />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
-                android:layout_margin="8dp">
+                android:layout_margin="4dp">
                 <TextView
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="Ürün Fiyatı"
                     android:textColor="#000"
-                    android:textSize="20dp"
-                    android:padding="5dp"
+                    android:textSize="17dp"
                     />
                 <TextView
                     android:id="@+id/tvFiyat"
@@ -91,33 +90,72 @@
                     android:text="Ürün Fiyatı"
                     android:gravity="right"
                     android:textColor="#000"
-                    android:textSize="20dp"
-                    android:padding="5dp"
+                    android:textSize="17dp"
                     />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
-                android:layout_margin="8dp">
+                android:layout_margin="4dp">
+                <TextView
+                    android:text="Adet : "
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:textSize="17dp"
+                    android:textColor="#000"/>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:gravity="right">
+                    <ImageButton
+                        android:id="@+id/cart_quant_minus"
+                        android:layout_gravity="center_vertical"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        app:srcCompat="@drawable/minus_circle"
+                        android:background="@null"/>
+                    <TextView
+                        android:id="@+id/cart_item_number"
+                        android:text="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="17dp"
+                        android:textColor="#000"/>
+                    <ImageButton
+                        android:id="@+id/cart_quant_add"
+                        android:layout_gravity="center_vertical"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        app:srcCompat="@drawable/plus_circle"
+                        android:background="@null"/>
+                </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_margin="4dp">
                 <TextView
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="Ürün Açıklaması:"
                     android:textColor="#000"
-                    android:textSize="20dp"
-                    android:padding="5dp"
+                    android:textSize="17dp"
                     />
                 <TextView
                     android:id="@+id/tvAciklama"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:text="..."
+                    android:text="  "
                     android:textColor="#000"
-                    android:textSize="20dp"
-                    android:padding="5dp"
+                    android:textSize="17dp"
+                    android:gravity="right"
                     />
             </LinearLayout>
 
