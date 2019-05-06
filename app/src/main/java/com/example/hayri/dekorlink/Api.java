@@ -8,6 +8,7 @@ import com.example.hayri.dekorlink.Model.ProdactList;
 import com.example.hayri.dekorlink.Model.SepetEkle;
 import com.example.hayri.dekorlink.Model.SepetListe;
 import com.example.hayri.dekorlink.Model.SepetUpdateCreate;
+import com.example.hayri.dekorlink.Model.SepetUrunSil;
 import com.example.hayri.dekorlink.Model.SoldprodactList;
 
 import retrofit2.Call;
@@ -63,4 +64,8 @@ public interface Api {
     @POST("sepetListe.php")
     @FormUrlEncoded
     Call<SepetListe> getsepetList(@Field("sepet_id") int sepet_id);
+
+    @POST("sepetÜrünSil.php")
+    @FormUrlEncoded
+    Call<SepetUrunSil> sepetUrunSil(@Field("sepet_id") int sepet_id,@Field("urun_id") int urun_id);
 }
